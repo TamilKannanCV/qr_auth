@@ -77,7 +77,8 @@ class FirebaseService {
       throw Exception("UID not exists");
     }
     final user = FirebaseAuth.instance.currentUser;
-    final res = await http.get(Uri.parse("${dotenv.get("CUSTOM_TOKEN_BASE_URL")}/customToken?uid=${user?.uid}"));
+    final client = http.Client();
+    final res = await client.get(Uri.parse("https://us-central1-qr-authentication-ce1d9.cloudfunctions.net/customToken?uid=${user?.uid}"));
     if (res.statusCode != 200) {
       throw Exception("Error fetching custom token");
     }
