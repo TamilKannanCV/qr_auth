@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:qr_auth/extensions/string_extensions.dart';
 import 'package:qr_auth/global/log/logger.dart';
 import 'package:uuid/uuid.dart';
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 @singleton
 class FirebaseService {
@@ -77,11 +77,11 @@ class FirebaseService {
       throw Exception("UID not exists");
     }
     final user = FirebaseAuth.instance.currentUser;
-    final res = await Dio().get("${dotenv.get("CUSTOM_TOKEN_BASE_URL")}/customToken?uid=${user?.uid}");
+    final res = await http.get(Uri.parse("${dotenv.get("CUSTOM_TOKEN_BASE_URL")}/customToken?uid=${user?.uid}"));
     if (res.statusCode != 200) {
-      throw Exception(res.statusMessage ?? "Error fetching custom token");
+      throw Exception("Error fetching custom token");
     }
-    final resp = res.data as Map<String, dynamic>;
+    final resp = json.decode(res.body) as Map<String, dynamic>;
 
     final token = resp["customToken"] as String?;
     logger.d(token);
