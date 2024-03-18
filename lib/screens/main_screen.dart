@@ -10,6 +10,7 @@ import 'package:qr_auth/global/log/logger.dart';
 import 'package:qr_auth/screens/controllers/main_controller.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 StreamController<DatabaseEvent> sessionsController = StreamController<DatabaseEvent>.broadcast();
@@ -39,11 +40,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       appBar: AppBar(
         actions: [
           FilledButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.code),
+            onPressed: () {
+              launchUrl(Uri.parse("https://github.com/TamilKannanCV/qr_auth"));
+            },
+            icon: const Icon(Icons.code),
             label: "Source Code".text.make(),
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(0.0),

@@ -34,6 +34,8 @@ dependencies:
   qr_bar_code_scanner_dialog: ^0.0.5
   dio: ^5.4.1
   flutter_dotenv: ^5.1.0
+  cloud_functions: ^4.6.9
+  url_launcher: ^6.2.5
 
 
 dev_dependencies:
