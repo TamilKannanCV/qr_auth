@@ -121,7 +121,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       ]),
                     ].table.gray400.roundedBorder.make(),
                     const SizedBox(height: 10.0),
-                  ].column().py12();
+                  ].column(axisSize: MainAxisSize.min).py12();
                 },
                 skipError: true,
                 error: (error, stackTrace) => const VxNone(),
@@ -129,7 +129,15 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               );
             },
           ),
-        ].column(crossAlignment: CrossAxisAlignment.start).p12().wFull(context).constrainedBox(const BoxConstraints(maxWidth: 500.0)).box.border(color: Colors.grey).rounded.make(),
+        ]
+            .column(crossAlignment: CrossAxisAlignment.start, axisSize: MainAxisSize.min)
+            .p12()
+            .wFull(context)
+            .constrainedBox(const BoxConstraints(maxWidth: 500.0))
+            .box
+            .border(color: Colors.grey)
+            .rounded
+            .make(),
         const SizedBox(height: 20.0),
         Builder(builder: (context) {
           final user = ref.watch(signInWithGoogleProvider).valueOrNull;
@@ -150,7 +158,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           data: data,
                         ).box.square(180.0).make(),
                         "Scan QR to sign-in".text.gray500.make(),
-                      ].column();
+                      ].column(axisSize: MainAxisSize.min);
                     },
                     error: (error, stackTrace) => const VxNone(),
                     loading: () => const CircularProgressIndicator.adaptive(),
@@ -184,7 +192,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   label: "Sign-in with Google".text.make(),
                 ).wFull(context);
               }),
-            ].column().p8(),
+            ].column(axisSize: MainAxisSize.min).p8(),
           ].column(crossAlignment: CrossAxisAlignment.start).p12().wFull(context).constrainedBox(const BoxConstraints(maxWidth: 500.0)).box.border(color: Colors.grey).rounded.make();
         }),
       ].column(axisSize: MainAxisSize.min).centered(),
