@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "56059241656",
+    "firebase_url": "https://qr-authentication-ce1d9-default-rtdb.firebaseio.com",
+    "project_id": "qr-authentication-ce1d9",
+    "storage_bucket": "qr-authentication-ce1d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56059241656:android:cc0dba311f93def147404d",
+        "android_client_info": {
+          "package_name": "com.example.qr_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56059241656-8rig2n5cqmuse5nabr3cvo6n950vqbq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIGHMBspSE12RaRKoo0AxWdrODn7dp4x8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56059241656-8rig2n5cqmuse5nabr3cvo6n950vqbq7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "56059241656-4d8721aa4hs57p491otnme32dqdq3527.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.qrAuth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
