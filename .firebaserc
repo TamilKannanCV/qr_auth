@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "qr-authentication-ce1d9"
+  },
+  "targets": {
+    "qr-authentication-ce1d9": {
+      "hosting": {
+        "demo": [
+          "qrauthdemo"
+        ]
+      }
+    }
+  }
+}
