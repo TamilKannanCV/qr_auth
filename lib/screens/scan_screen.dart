@@ -19,6 +19,13 @@ class ScanScreen extends StatefulHookConsumerWidget {
 }
 
 class _ScanScreenState extends ConsumerState<ScanScreen> {
+  late MobileScannerController _scannerController;
+  @override
+  void initState() {
+    _scannerController = MobileScannerController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +36,7 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
             height: MediaQuery.of(context).size.width * 0.80,
             width: MediaQuery.of(context).size.width * 0.80,
           ),
-          controller: MobileScannerController(),
+          controller: _scannerController,
           overlay: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -48,21 +55,21 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
           ),
           onDetect: (capture) async {
             final List<Barcode> barcodes = capture.barcodes;
-            for (final barcode in barcodes) {
-              final scannedRawData = barcode.rawValue;
-              if (scannedRawData == null) {
+            final barcode = barcodes.firstOrNull();
+            final scannedRawData = barcode.rawValue;
+            if (scannedRawData == null) {
+              return;
+            }
+            try {
+              _scannerController.stop();
+              final jsonData = json.decode(scannedRawData.decrypt()) as Map<String, dynamic>?;
+              if (jsonData == null || jsonData.containsKey("id") == false) {
                 return;
               }
-              try {
-                final jsonData = json.decode(scannedRawData.decrypt()) as Map<String, dynamic>?;
-                if (jsonData == null || jsonData.containsKey("id") == false) {
-                  return;
-                }
-                ref.read(authorizeQrSessionProvider(uid: jsonData['id']));
-                MainRoute().go(context);
-              } catch (e) {
-                logger.e(e);
-              }
+              ref.read(authorizeQrSessionProvider(uid: jsonData['id']));
+              MainRoute().go(context);
+            } catch (e) {
+              logger.e(e);
             }
           },
         );
