@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:qr_auth/extensions/string_extensions.dart';
 import 'package:qr_auth/global/log/logger.dart';
+import 'package:qr_auth/routes/app_router.routes.dart';
 import 'package:qr_auth/screens/controllers/main_controller.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -85,23 +86,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         "Scan a QR code to sign in other users".text.semiBold.make().p12().box.alignCenterLeft.make(),
                         FilledButton.icon(
                           onPressed: () async {
-                            QrBarCodeScannerDialog().getScannedQrBarCode(
-                              onCode: (p0) {
-                                final value = p0?.replaceFirst("Code scanned = ", '');
-                                if (value == null) {
-                                  return;
-                                }
-                                try {
-                                  final jsonData = json.decode(value.decrypt()) as Map<String, dynamic>?;
-                                  if (jsonData == null || jsonData.containsKey("id") == false) {
-                                    return;
-                                  }
-                                  ref.read(authorizeQrSessionProvider(uid: jsonData['id']));
-                                } catch (e) {
-                                  logger.e(e);
-                                }
-                              },
-                            );
+                            ScanRoute().go(context);
                           },
                           label: "Scan".text.make(),
                           icon: const Icon(

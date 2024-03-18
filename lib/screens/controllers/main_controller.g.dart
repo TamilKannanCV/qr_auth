@@ -6,7 +6,7 @@ part of 'main_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$startQrSessionHash() => r'f1fb5e975c4cc576e0cabef4179c39ace0f9e30e';
+String _$startQrSessionHash() => r'3b8c340984cf237cd7b2b61dc8e2cad0fd6df98c';
 
 /// See also [startQrSession].
 @ProviderFor(startQrSession)
@@ -171,7 +171,7 @@ class _AuthorizeQrSessionProviderElement
   String get uid => (origin as AuthorizeQrSessionProvider).uid;
 }
 
-String _$signInWithGoogleHash() => r'46aa75457c857cd8d96ff8d5bef14b76d2753a4e';
+String _$signInWithGoogleHash() => r'005195548b5dfcf49c789df44ffd12f24d1d6fcd';
 
 /// See also [SignInWithGoogle].
 @ProviderFor(SignInWithGoogle)

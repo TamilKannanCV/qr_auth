@@ -4,11 +4,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_auth/firebase_options.dart';
 import 'package:qr_auth/routes/app_router.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'injections/injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Vx.setPathUrlStrategy();
   await dotenv.load(fileName: '.env');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
